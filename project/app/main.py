@@ -19,6 +19,6 @@ register_tortoise(
 async def pong(settings: Settings = Depends(get_settings)):
     return {
         "ping": "pong!",
-        "enviornment": settings.environment,
+        "environment": settings.environment,
         "testing": settings.testing,
     }
