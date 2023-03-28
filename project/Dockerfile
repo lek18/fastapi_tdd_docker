@@ -30,3 +30,10 @@ RUN poetry install --no-root
 COPY . .
 
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+
+# add entrypoint.sh
+COPY ./entrypoint.sh .
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# run entrypoint.sh
+ENTRYPOINT [ "/usr/src/app/entrypoint.sh"]
