@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE=1\
     PYTHONUNBUFFERED=1\
     POETRY_VERSION=1.4.1
-    
+
 
 # install system dependencies
 RUN apt-get update \
