@@ -1,3 +1,5 @@
+from typing import List
+
 from app.api import crud
 from app.models.pydantic import SummaryPayloadSchema, SummaryResponseSchema
 from app.models.tortoise import SummarySchema  # , HTTPException
@@ -19,3 +21,9 @@ async def read_summary(id: int) -> SummarySchema:
     summary = await crud.get(id)
 
     return summary
+
+
+@router.get("/", response_model=List[SummarySchema])
+async def read_all_summaries() -> List[SummarySchema]:
+    summaries = await crud.get_all()
+    return summaries
