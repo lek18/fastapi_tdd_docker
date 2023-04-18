@@ -30,6 +30,7 @@ repos:
       - id: isort
         name: isort (python)
         language_version: python3.11
+        files: ./project
 # -   repo: local
 #     hooks:
 #       - id: mypy
