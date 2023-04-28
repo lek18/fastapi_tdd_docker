@@ -69,6 +69,8 @@ jobs:
             ${{ env.IMAGE }}:latest
       - name: List Docker images
         run: docker images
+      - name: Check Pip Dependencies
+        run: pip freeze | grep flake8
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
       - name: Flake8
