@@ -13,6 +13,8 @@ asyncpg = "0.27.0"
 tortoise-orm = "0.19.3"
 aerich = "0.7.1"
 gunicorn = "20.1.0"
+
+[tool.poetry.group.dev.dependencies]
 pylint = "^2.17.1"
 mypy = "^1.1.1"
 httpx = "^0.23.3"
@@ -22,8 +24,6 @@ flake8 = "6.0.0"
 isort = "5.12.0"
 black = "^23.3.0"
 
-[tool.poetry.group.dev.dependencies]
-
 [tool.aerich]
 tortoise_orm = "app.db.TORTOISE_ORM"
 location = "./migrations"
@@ -31,3 +31,7 @@ src_folder = "./."
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+src_paths = ["app", "tests"]

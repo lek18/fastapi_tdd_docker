@@ -1,8 +1,9 @@
 from typing import List, Union
 
+from fastapi import HTTPException
+
 from app.models.pydantic import SummaryPayloadSchema
 from app.models.tortoise import TextSummary
-from fastapi import HTTPException
 
 
 async def post(payload: SummaryPayloadSchema) -> int:
