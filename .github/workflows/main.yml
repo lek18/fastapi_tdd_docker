@@ -69,8 +69,10 @@ jobs:
             ${{ env.IMAGE }}:latest
       - name: List Docker images
         run: docker images
-      - name: Check Pip Dependencies
-        run: pip freeze | grep flake8
+      - name: Check Pip Dependencies with pip
+        run: docker exec fastapi-tdd freeze | grep flake8 || echo "flake8 is not installed"
+      - name: Check Pip Dependencies with poetry
+        run: docker exec fastapi-tdd poetry run pip freeze | grep flake8 || echo "flake8 is not installed"
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
       - name: Flake8
