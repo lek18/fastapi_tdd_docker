@@ -52,7 +52,7 @@ jobs:
       - name: Build image
         run: |
           docker build \
-            --cache-from ${{ env.IMAGE }}:latest \
+            --no-cache \
             --tag ${{ env.IMAGE }}:latest \
             --file ./project/Dockerfile.prod \
             "./project"
@@ -67,6 +67,8 @@ jobs:
             -e DATABASE_TEST_URL=sqlite://sqlite.db \
             -p 5003:8765 \
             ${{ env.IMAGE }}:latest
+      - name: List Docker images
+        run: docker images
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
       - name: Flake8
