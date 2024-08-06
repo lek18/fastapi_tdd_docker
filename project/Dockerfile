@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1\
     PYTHONUNBUFFERED=1\
-    POETRY_VERSION=1.4.1
+    POETRY_VERSION=1.8.3
 
 
 # install system dependencies
