@@ -18,7 +18,7 @@ RUN apt-get update \
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
 
-RUN pip install --upgrade pip\
+RUN pip install --upgrade pip &&\
     pip install poetry==${POETRY_VERSION}
 RUN poetry config virtualenvs.create false
 
