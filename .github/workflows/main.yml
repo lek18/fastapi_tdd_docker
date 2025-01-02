@@ -8,14 +8,27 @@ env:
 
 jobs:
 
+  linting:
+    name: Pre Commit Files
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pre-commit and run checks
+        run: |
+          python --version
+          pip install pre-commit
+          pre-commit install
+          pre-commit run --all-files
+
   build:
     name: Build Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: main
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin ghcr.io
         env:
@@ -41,8 +54,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: main
+
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin ghcr.io
         env:
@@ -74,8 +86,6 @@ jobs:
         run: docker exec fastapi-tdd freeze | grep flake8 || echo "flake8 is not installed"
       - name: Check Pip Dependencies with poetry
         run: docker exec fastapi-tdd poetry run pip freeze | grep flake8 || echo "flake8 is not installed"
-      - name: Pre-Commit
-        run: docker exec fastapi-tdd poetry run pre-commit run --all-files
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
 
