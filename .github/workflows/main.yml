@@ -75,7 +75,7 @@ jobs:
       - name: Check Pip Dependencies with poetry
         run: docker exec fastapi-tdd poetry run pip freeze | grep flake8 || echo "flake8 is not installed"
       - name: Pre-Commit
-        run: docker exec fastapi-tdd  pre-commit run --all-files
+        run: docker exec fastapi-tdd poetry run pre-commit run --all-files
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
 
