@@ -74,14 +74,11 @@ jobs:
         run: docker exec fastapi-tdd freeze | grep flake8 || echo "flake8 is not installed"
       - name: Check Pip Dependencies with poetry
         run: docker exec fastapi-tdd poetry run pip freeze | grep flake8 || echo "flake8 is not installed"
+      - name: Pre-Commit
+        run: docker exec fastapi-tdd  pre-commit run --all-files
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
-      - name: Flake8
-        run: docker exec fastapi-tdd python -m flake8 .
-      - name: Black
-        run: docker exec fastapi-tdd python -m black . --check
-      - name: isort
-        run: docker exec fastapi-tdd python -m isort . --check-only
+
 
   # deploy:
   #   name: Deploy to Heroku
